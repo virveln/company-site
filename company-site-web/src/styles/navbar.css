@@ -1,0 +1,62 @@
+.navbar-shadow{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom styles for the hamburger effect */
+.tham-e-squeeze {
+    position: relative;
+    width: 35px;
+    height: 24px;
+    display: inline-block;
+    z-index: 3000;
+    cursor: pointer;
+    margin: auto 0;
+}
+
+.tham-e-squeeze .tham-inner {
+    position: absolute;
+    width: 35px;
+    height: 4px;
+    background-color: #333;
+    background-color: var(--primary-color);
+    left: 0;
+    top: 50%;
+    margin-top: -2px;
+    transition: all 75ms cubic-bezier(.55, .055, .675, .19);
+    border-radius: 2px;  
+}
+  
+  .tham-e-squeeze .tham-inner::before,
+  .tham-e-squeeze .tham-inner::after {
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 4px;
+    background-color: #333;
+    background-color: var(--primary-color);
+    transition: 75ms cubic-bezier(.55, .055, .675, .19);
+    border-radius: 2px;    
+}
+  
+  .tham-e-squeeze .tham-inner::before {
+    top: -10px;
+  }
+  
+  .tham-e-squeeze .tham-inner::after {
+    bottom: -10px;
+  }
+  
+  .tham-e-squeeze.tham-active .tham-inner {
+    transform: rotate(45deg);
+  }
+  
+  .tham-e-squeeze.tham-active .tham-inner::before {
+    top: 0;
+    opacity: 0;
+  }
+  
+  .tham-e-squeeze.tham-active .tham-inner::after {
+    bottom: 0;
+    transform: rotate(-90deg);
+  }
+  

@@ -1,0 +1,60 @@
+:root {
+    --primary-color: #11468F;
+    --primary-color-dark: #041562;
+    --secondary-color: #DA1212;
+    --gray-color: #f1f1f1;
+
+    --primary-color-hover: #0C3164;
+    --secondary-color-hover: #AE0E0E;
+}
+
+.outer-container {
+    /* min-height: calc(100vh - 20px); */
+    margin-top: 100px;
+    margin-top: 80px;
+    padding: 0 5%;
+    flex: 1;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    border-top-left-radius: 8px; /* Rundar hörnen upptill */
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0; /* Ingen rundning nertill */
+    border-bottom-right-radius: 8px;
+}
+
+.btn:hover {
+    background-color: var(--primary-color-hover);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+/*TABLET*/
+@media screen and (min-width: 768px) {
+    .outer-container {
+        /* margin: 80px 5% 0 5%; */
+      
+    }
+}
+/*DESKTOP*/
+@media screen and (min-width: 992px) {
+    .outer-container {
+        margin: 80px auto 0 auto;
+        max-width: 900px;
+    }
+}

@@ -3,22 +3,22 @@ from django.db import models
 class Apartment(models.Model):
     is_available = models.BooleanField(default=True, verbose_name='Tillgänglig')
     title = models.CharField(max_length=255, verbose_name='Titel')
-    address = models.CharField(max_length=255, verbose_name='Adress')
+    address = models.CharField(max_length=255, verbose_name='Adress, ev lgh')
     area = models.CharField(max_length=255, verbose_name='Område')
     city = models.CharField(max_length=255, verbose_name='Stad')
     rent = models.IntegerField(verbose_name='Hyra')
     rooms = models.PositiveIntegerField(verbose_name='Rok')
     square_meter = models.PositiveIntegerField(verbose_name='Kvm')
     floor_level = models.PositiveIntegerField(verbose_name='Våning')
-    access = models.DateField(verbose_name='Datum för tillträde')
+    access = models.CharField(max_length=255, verbose_name='Datum för tillträde')
 
     #Amenities
     has_parking = models.BooleanField(default=False, verbose_name='Finns parkering')
     has_balcony = models.BooleanField(default=False, verbose_name='Finns balkong')
     pet_friendly = models.BooleanField(default=False, verbose_name='Djurvänlig')
     description = models.TextField(verbose_name='Beskrivning')
-    general_info = models.TextField(verbose_name='Generell info')
-    included = models.TextField(verbose_name='Inkluderar')
+    general_info = models.TextField(verbose_name='Allmän info')
+    included = models.TextField(verbose_name='Ingår i hyran')
     environment = models.TextField(verbose_name='Omgivning')
 
     def __str__(self):
