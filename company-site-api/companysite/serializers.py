@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import Apartment, ApartmentImage
+from api.models import Apartment, ApartmentImage, Information, FaultReport, FaultReportImage
 
 
 class ApartmentImageSerializer(serializers.ModelSerializer):
@@ -28,3 +28,33 @@ class ApartmentSerializer(serializers.ModelSerializer):
 
         return product
 
+
+class InformationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Information
+        fields = "__all__"
+
+
+class FaultReportImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FaultReportImage
+        fields = ['image']
+
+
+class FaultReportSerializer(serializers.ModelSerializer):
+    images = FaultReportImageSerializer(many=True, required=False)
+
+    class Meta:
+        model = FaultReport
+        fields = ['id', 'address', 'category', 'classification', 'name', 'email', 'phone', 'title', 'description', 'images']
+
+    def create(self, validated_data):
+        # Extract images separately
+        images_data = self.context['request'].FILES.getlist('images')
+        fault_report = FaultReport.objects.create(**validated_data)
+
+        # Save images
+        for image in images_data:
+            FaultReportImage.objects.create(fault_report=fault_report, image=image)
+
+        return fault_report

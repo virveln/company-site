@@ -7,12 +7,10 @@
 // npm install tailwind-hamburgers -S
 // npm install classnames
 
-
 import './App.css'
 import AppRoutes from './routes/AppRoutes'
 
 function App() {
-
   return <AppRoutes />
 }
 

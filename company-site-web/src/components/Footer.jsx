@@ -1,93 +1,99 @@
-import '../styles/general.css';
 import { Link } from 'react-router-dom';
-import { FaEnvelope } from 'react-icons/fa';
+
 import contactDetails from "../utils/contactDetails";
-import logo from '/vite.svg';
 import URL_ENDPOINTS from '../utils/urlEndpoints';
+import { UnderlineFromCenterEffect } from '../components/Effects';
+
+import { FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import { FaClock } from "react-icons/fa6";
+import logo from '/vite.svg';
 
 const Footer = () => {
     return (
-        <footer className="bg-[var(--primary-color)] text-white py-16 pb-10 ">
-            <div className="grid md:grid-cols-3 gap-12 max-w-[1200px] mx-auto px-5 md:px-8">
-
-                <Link to="/" className=""><img src={logo} alt='logo' className='w-[70px]' /></Link>
-
-                {/* Contact Section */}
-                <section>
-                    <h3 className=" font-semibold mb-4">Kontakt</h3>
-                    <ul className='space-y-2'>
-                        <li>
-                            <a href='tel:' className="">
-                                {contactDetails.telNbr}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="mailto:info@hotmail.com" className="relative group flex items-center w-fit text-white hover:text-[var(--gray-color)] transition-colors duration-300" >
-                                <FaEnvelope className="mr-2" />
-                                {contactDetails.mail}
-                                <span className="absolute bottom-[-5px] left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-all duration-300 origin-bottom"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </section>
-
-                {/* Explore Section */}
-                <section>
-                    <h3 className="font-semibold mb-4">Utforska</h3>
-                    <ul className="space-y-2 text-white">
-                        <li>
-                            <Link to={URL_ENDPOINTS.AVALIBLE_APARTMENTS} className="relative group hover:text-[var(--gray-color)] transition-colors duration-300">
-                                Lediga lägenheter
-                                <span className="absolute bottom-[-5px] left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-all duration-300 origin-bottom"></span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to={URL_ENDPOINTS.FOR_TENANT} className="relative group hover:text-[var(--gray-color)] transition-colors duration-300">
-                                För hyresgäser
-                                <span className="absolute bottom-[-5px] left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-all duration-300 origin-bottom"></span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to={URL_ENDPOINTS.CONTACT} className="relative group hover:text-[var(--gray-color)] transition-colors duration-300">
-                                Kontakt
-                                <span className="absolute bottom-[-5px] left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-all duration-300 origin-bottom"></span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to={URL_ENDPOINTS.ABOUT} className="relative group hover:text-[var(--gray-color)] transition-colors duration-300">
-                                Om oss
-                                <span className="absolute bottom-[-5px] left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-all duration-300 origin-bottom"></span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to={URL_ENDPOINTS.FAULT_REPORT} className="relative group  hover:text-[var(--gray-color)] transition-colors duration-300">
-                                Felanmälan
-                                <span className="absolute bottom-[-5px] left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-all duration-300 origin-bottom"></span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link className="relative group hover:text-[var(--gray-color)] transition-colors duration-300">
-                                Cookies
-                                <span className="absolute bottom-[-5px] left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-all duration-300 origin-bottom"></span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link className="relative group hover:text-[var(--gray-color)] transition-colors duration-300">
-                                Integritetspolicy
-                                <span className="absolute bottom-[-5px] left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-all duration-300 origin-bottom"></span>
-                            </Link>
-                        </li>
-                    </ul>
+        <footer className="py-16 pb-10 bg-[var(--primary-color)] text-white">
+            <div className='max-w-[1200px] mx-auto px-5 md:px-8'>
+                <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4  ">
+                    <section className='h-fit w-fit'>
+                        <Link to="/" className=""><img src={logo} alt='Logga' className='w-[70px] ' /></Link>
+                    </section>
+                    {/* Contact Section */}
+                    <section>
+                        <h3 className="mb-4 pb-2 font-semibold border-b-3 border-[var(--primary-color-hover)]">Kontakt</h3>
+                        <ul className='space-y-2 '>
+                            {[
+                                {
+                                    icon: <FaPhoneAlt />,
+                                    content: <a href='tel:' className="relative group">{contactDetails.telNbr}
+                                        <UnderlineFromCenterEffect color={'bg-white'} />
+                                    </a>
+                                },
+                                {
+                                    icon: <FaEnvelope />,
+                                    content: <a href="mailto:info@hotmail.com" className="relative group" >{contactDetails.mail}
+                                        <UnderlineFromCenterEffect color={'bg-white'} />
+                                    </a>
+                                },
+                                {
+                                    icon: <FaClock />,
+                                    content: <p className="">Mån - Fre: 8:00 - 17:00</p>
+                                },
+                            ].map((item, index) => (
+                                <li key={index} className='flex items-center gap-4'>
+                                    {item.icon}
+                                    {item.content}
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                    {/* Explore Section */}
+                    <section>
+                        <h3 className="mb-4 pb-2 font-semibold border-b-3 border-[var(--primary-color-hover)]">Utforska</h3>
+                        <ul className="space-y-2 ">
+                            {[
+                                { label: 'Lediga lägenheter', url: URL_ENDPOINTS.AVALIBLE_APARTMENTS },
+                                { label: 'Kontakt', url: URL_ENDPOINTS.CONTACT },
+                                { label: 'Om oss', url: URL_ENDPOINTS.ABOUT },
+                                { label: 'Cookies', url: '#' },
+                                { label: 'Integritetspolicy', url: '#' },
+                            ].map((item) => (
+                                <li key={item.label}>
+                                    <Link to={item.url} className="relative group">
+                                        {item.label}
+                                        <UnderlineFromCenterEffect color={'bg-white'} />
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                    {/* For Tenant Section */}
+                    <section>
+                        <h3 className="mb-4 pb-2 font-semibold border-b-3 border-[var(--primary-color-hover)]">För hyresgäster</h3>
+                        <ul className="space-y-2 ">
+                            {[
+                                { label: 'Info till hyresgäster', url: `${URL_ENDPOINTS.FOR_TENANT}${URL_ENDPOINTS.INFORMATION}` },
+                                { label: 'Felanmälan', url: URL_ENDPOINTS.FOR_TENANT + URL_ENDPOINTS.FAULT_REPORT },
+                                { label: 'Uthyrningspolicy', url: URL_ENDPOINTS.FOR_TENANT + URL_ENDPOINTS.RENTAL_POLICY },
+                                { label: 'Hyresinbetalningar', url: URL_ENDPOINTS.FOR_TENANT + URL_ENDPOINTS.RENT_PAYMENT },
+                                { label: 'Flytta in', url: URL_ENDPOINTS.FOR_TENANT + URL_ENDPOINTS.MOVING_IN },
+                                { label: 'Flytta ut', url: URL_ENDPOINTS.FOR_TENANT + URL_ENDPOINTS.MOVING_OUT },
+                                { label: 'Skötsel av bostaden', url: URL_ENDPOINTS.FOR_TENANT + URL_ENDPOINTS.HOME_MAINTENANCE },
+                                { label: 'Trivsel', url: URL_ENDPOINTS.FOR_TENANT + URL_ENDPOINTS.NEIGHBORS },
+                            ].map((item) => (
+                                <li key={item.label}>
+                                    <Link to={item.url} className="relative group">
+                                        {item.label}
+                                        <UnderlineFromCenterEffect color={'bg-white'} />
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                </div>
+                {/* Footer Bottom Section */}
+                <section className="text-sm">
+                    <p className='mt-8 pt-4 border-t-3 border-[var(--primary-color-hover)] w-full'>&copy; 2025 Bostadsportalen</p>
                 </section>
             </div>
-
-            {/* Horizontal Break Line */}
-            <div className="border-t border-white my-8 mx-10"></div>
-
-            {/* Footer Bottom Section */}
-            <section className="text-center text-white">
-                <p>&copy; 2025 Company Name. All Rights Reserved.</p>
-            </section>
         </footer>
 
     );

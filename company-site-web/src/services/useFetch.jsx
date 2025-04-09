@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 
+
 const useFetch = (url) => {
     const API_URL = 'http://127.0.0.1:8000';
     const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(null);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        // const controller = new AbortController();
+        // const signal = controller.signal;
+
         const fetchData = async () => {
             setLoading(true);
             setError(null);
@@ -18,21 +22,29 @@ const useFetch = (url) => {
                     headers: {
                         "Content-Type": "application/json",
                     },
+                    // signal,
                 });
+
                 if (!response.ok) {
-                    throw new Error('Error getting data.')
+                    throw new Error(`Error ${response.status}: ${response.statusText}`);
                 }
+
                 const result = await response.json();
                 setData(result || []);
-                setLoading(false);
 
             } catch (err) {
-                setError(err);
+                // if (err.name === "AbortError") return; // Ignore abort errors
+                setError(err.message || "Something went wrong");
             } finally {
                 setLoading(false);
             }
         }
         fetchData();
+
+        // return () => {
+        //     controller.abort(); // Cancel fetch on unmount
+        // }
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [url]);
 

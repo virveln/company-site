@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from .models import Apartment, ApartmentImage
-from companysite.serializers import ApartmentSerializer, ApartmentImageSerializer
+from .models import Apartment, ApartmentImage, Information, FaultReport, FaultReportImage
+from companysite.serializers import ApartmentSerializer, ApartmentImageSerializer, InformationSerializer, FaultReportSerializer
 from rest_framework.decorators import action
 from rest_framework.parsers import MultiPartParser, FormParser
 
@@ -26,4 +26,17 @@ class ApartmentViewSet(viewsets.ModelViewSet):
 class ApartmentImageViewSet(viewsets.ModelViewSet):
     queryset = ApartmentImage.objects.all()
     serializer_class = ApartmentImageSerializer
+
+
+class InformationViewSet(viewsets.ModelViewSet):
+    queryset = Information.objects.all().order_by("-created_at")
+    serializer_class = InformationSerializer
+    permission_classes = [AllowAny]
+
+
+class FaultReportCreateView(viewsets.ModelViewSet):
+    queryset = FaultReport.objects.all()
+    serializer_class = FaultReportSerializer
+    permission_classes = [AllowAny]
+    http_method_names = ['post']
 

@@ -1,44 +1,39 @@
-import '../../styles/general.css';
 import '../../styles/navbar.css';
 import { NavLink } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import URL_ENDPOINTS from '../../utils/urlEndpoints';
+import { UnderlineFromCenterEffect } from '../Effects';
+// import logo from '/vite.svg';
+
+const navitems = [
+    { title: 'Lediga lägenheter', url: URL_ENDPOINTS.AVALIBLE_APARTMENTS },
+    { title: 'För hyresgäster', url: URL_ENDPOINTS.FOR_TENANT },
+    // { title: 'Felanmälan', url: URL_ENDPOINTS.FAULT_REPORT },
+    { title: 'Kontakt', url: URL_ENDPOINTS.CONTACT },
+    { title: 'Om oss', url: URL_ENDPOINTS.ABOUT },
+]
 
 const NavMenu = ({ closeMenu }) => {
     return (
-        <div className="nav-menu flex flex-col md:flex-row items-center gap-[20px] sm:font-semibold text-[var(--primary-color)]">
-            <NavLink to={URL_ENDPOINTS.AVALIBLE_APARTMENTS} end
-                className={({ isActive }) => `relative group hover:text-[var(--primary-color-hover)] ${isActive ? 'text-[var(--primary-color-dark)]' : ''}` }
-                onClick={closeMenu}> 
-                Lediga lägenheter
-                <span className="absolute bottom-[-5px] left-0 w-full h-0.5 bg-[var(--primary-color)] transform scale-x-0 group-hover:scale-x-100 transition-all duration-300 origin-bottom"></span>
+        <>
 
-            </NavLink>
-            <NavLink to={URL_ENDPOINTS.FOR_TENANT}
-                className={({ isActive }) => `relative group hover:text-[var(--primary-color-hover)] ${isActive ? 'text-[var(--primary-color-dark)]' : ''}` }
-                onClick={closeMenu}> 
-                För hyresgäster
-                <span className="absolute bottom-[-5px] left-0 w-full h-0.5 bg-[var(--primary-color)] transform scale-x-0 group-hover:scale-x-100 transition-all duration-300 origin-bottom"></span>
-            </NavLink>
-            <NavLink to={URL_ENDPOINTS.FAULT_REPORT}
-                className={({ isActive }) => `relative group hover:text-[var(--primary-color-hover)] ${isActive ? 'text-[var(--primary-color-dark)]' : ''}` }
-                onClick={closeMenu}> 
-                Felanmälan
-                <span className="absolute bottom-[-5px] left-0 w-full h-0.5 bg-[var(--primary-color)] transform scale-x-0 group-hover:scale-x-100 transition-all duration-300 origin-bottom"></span>
-            </NavLink>
-            <NavLink to={URL_ENDPOINTS.CONTACT}
-                className={({ isActive }) => `relative group hover:text-[var(--primary-color-hover)] ${isActive ? 'text-[var(--primary-color-dark)]' : ''}` }
-                onClick={closeMenu}> 
-                Kontakt
-                <span className="absolute bottom-[-5px] left-0 w-full h-0.5 bg-[var(--primary-color)] transform scale-x-0 group-hover:scale-x-100 transition-all duration-300 origin-bottom"></span>
-            </NavLink>
-            <NavLink to={URL_ENDPOINTS.ABOUT}
-                className={({ isActive }) => `relative group hover:text-[var(--primary-color-hover)] ${isActive ? 'text-[var(--primary-color-dark)]' : ''}` }
-                onClick={closeMenu}> 
-                Om oss
-                <span className="absolute bottom-[-5px] left-0 w-full h-0.5 bg-[var(--primary-color)] transform scale-x-0 group-hover:scale-x-100 transition-all duration-300 origin-bottom"></span>
-            </NavLink>
-        </div>
+            <div className="flex flex-col gap-[40px] w-full items-end mr-20 pl-10 
+                             md:flex-row md:gap-[20px] md:w-fit md:items-center md:mr-0 md:pl-0">
+                {navitems.map((item, index) => (
+                    <NavLink key={index} to={item.url}
+                        className={({ isActive }) => `relative group text-2xl md:text-base text-[var(--primary-color)]  ${isActive ? 'font-black' : 'font-semibold'}`}
+                        onClick={closeMenu}>
+                        {item.title}
+                    <UnderlineFromCenterEffect color={'bg-[var(--primary-color)]'}/>
+                    </NavLink>
+                ))}
+
+            </div>
+            {/* <div className='md:hidden mt-20'>
+                <Link to="/" className="p-0"><img src={logo} alt='logo' className='w-15' /></Link>
+            </div> */}
+        </>
     );
 };
 

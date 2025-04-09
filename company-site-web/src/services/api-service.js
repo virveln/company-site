@@ -3,20 +3,6 @@ const API_URL = 'http://127.0.0.1:8000';
 
 export default class API {
 
-    // static async loginUser(body) {
-    //     const response = await fetch(`${API_URL}/auth/`, {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify(body)
-    //     });
-    //     if (!response.ok) {
-    //         return null;
-    //     }
-    //     return await response.json();
-    // }
-
     static async fetchApartments() {
         try {
             const response = await fetch(`${API_URL}/api/apartments/`, {
@@ -52,4 +38,61 @@ export default class API {
             return null;
         }
     }
+
+    static async fetchInformation() {
+        try {
+            const response = await fetch(`${API_URL}/api/information/`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            if (!response.ok) {
+                return null;
+            }
+            return await response.json();
+        } catch (error) {
+            console.error("API Error: ", error);
+            return [];
+        }
+    }
+
+    static async getInformation(information_id) {
+        try {
+            const response = await fetch(`${API_URL}/api/information/${information_id}/`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            if (!response.ok) {
+                return null;
+            }
+            return await response.json();
+        } catch (error) {
+            console.error("API Error: ", error);
+            return [];
+        }
+    }
+
+    static async setFaultReport(formDataToSend) {
+        try {
+            const response = await fetch(`${API_URL}/api/fault-reports/`, {
+                method: 'POST',
+                body: formDataToSend,
+            });
+
+            if (response.ok) {
+                // alert(' skickad!');
+                return true;
+            } else {
+                // alert('Något gick fel. Försök igen.');
+                return false;
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Något gick fel. Försök igen.');
+        }
+    }
+
 }
