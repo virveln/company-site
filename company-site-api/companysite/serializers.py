@@ -14,19 +14,32 @@ class ApartmentSerializer(serializers.ModelSerializer):
         child=serializers.ImageField(allow_empty_file=False, use_url=False),
         write_only=True
     )
+    access_note_display = serializers.CharField(source='get_access_note_display', read_only=True)
 
     class Meta:
         model = Apartment
         fields = "__all__"
 
+    def validate(self, data):
+        access_date = data.get('access_date')
+        access_note = data.get('access_string')
+
+        # Ensure only one of the fields is filled
+        if access_date and access_note:
+            raise serializers.ValidationError("You can only fill one of 'access_date' or 'access_string'. Please leave the other blank.")
+        if not access_date and not access_note:
+            raise serializers.ValidationError("At least one of 'access_date' or 'access_string' must be filled.")
+
+        return data
+
     def create(self, validated_data):
         uploaded_images = validated_data.pop("uploaded_images")
-        product = Apartment.objects.create(**validated_data)
+        apartment = Apartment.objects.create(**validated_data)
 
         for image in uploaded_images:
-            ApartmentImage.objects.create(product=product, image=image)
+            ApartmentImage.objects.create(product=apartment, image=image)
 
-        return product
+        return apartment
 
 
 class InformationSerializer(serializers.ModelSerializer):

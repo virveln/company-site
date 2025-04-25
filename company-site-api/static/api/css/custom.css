@@ -1,0 +1,67 @@
+/* Apartment */
+#apartment_form .field-access_date, .field-access_note {
+    display: inline-block;
+}
+
+#apartment_form .field-access_date {
+    padding-right: 20px;
+}
+
+#apartment_form .field-access_note>.inline {
+    padding-bottom: 6px;
+}
+
+
+/*
+td.delete {
+    background-color: #BA2121;
+}*/
+
+td.delete>input {
+    float: left;
+}
+
+
+.inline-deletelink {
+    float: left;
+
+}
+
+.delete-image-btn {
+    background-color: #BA2121;
+    color: #ffffff;
+    float: left;
+    cursor: pointer;
+    border: none;
+    padding: 8px;
+}
+
+
+
+/* Information */
+
+#information_form .file-upload {
+    width: 100%;
+    position: relative;
+}
+
+#information_form .clearable-file-input {
+    position: absolute;
+    right: 0;
+    margin-left: 5px;
+   /*
+   align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
+*/
+    /*
+    padding: 5px 5px 7px 15px;
+    border-radius: 4px;
+    background-color: #BA2121;
+    */
+}
+
+#information_form span.clearable-file-input label {
+    margin-left: 5px;
+
+}

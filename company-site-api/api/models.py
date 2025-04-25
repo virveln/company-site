@@ -26,7 +26,11 @@ class Apartment(models.Model):
     rooms = models.PositiveIntegerField(verbose_name='Rok')
     square_meter = models.PositiveIntegerField(verbose_name='Kvm')
     floor_level = models.PositiveIntegerField(verbose_name='Våning')
-    access = models.CharField(max_length=255, verbose_name='Tillträde')
+    #access = models.CharField(max_length=255, verbose_name='Tillträde')
+    #access_date = models.DateField(blank=True, null=True, verbose_name='Tillträdesdatum')
+    #access_note = models.CharField(max_length=255, blank=True, null=True, verbose_name='Tillträdesinformation')
+    access_date = models.DateField(verbose_name='Tillträde (Datum)', null=True, blank=True)
+    access_note = models.CharField(max_length=255, verbose_name='Tillträde (Text)', null=True, blank=True, choices=[('enligt_överenskommelse', 'Enligt överenskommelse')])
 
     #Amenities
     has_parking = models.BooleanField(default=False, verbose_name='Finns parkering')
@@ -42,17 +46,26 @@ class Apartment(models.Model):
         verbose_name_plural = 'Lägenheter'
 
     def __str__(self):
-        return self.title
+        return f"{self.id} - {self.title}"
 
     def get_included_list(self):
         return self.included.split("\n") if self.included else []
 
+    def clean(self):
+        # Custom validation to ensure either `access_date` or `access_string` is set, but not both.
+        if self.access_date and self.access_note:
+            raise ValidationError('Välj antingen datum eller texten "Enligt överenskommelse".')
+
+        if not self.access_date and not self.access_note:
+            raise ValidationError('Du måste välja antingen ett datum eller texten "Enligt överenskommelse".')
+
 
 class ApartmentImage(models.Model):
     def get_upload_to(instance, filename):
-        return f'apartments/{instance.apartment.id}/{filename}'
+        apartment_id = instance.apartment.id if instance.apartment_id else 'temp'
+        return f'apartments/{apartment_id}/{filename}'
 
-    apartment = models.ForeignKey(Apartment, on_delete=models.CASCADE, related_name="images", verbose_name='Lägenhet bilder')
+    apartment = models.ForeignKey(Apartment, blank=True, on_delete=models.CASCADE, related_name="images", verbose_name='Lägenhet bilder')
     image = models.ImageField(upload_to=get_upload_to, verbose_name='Bilder')
     #image = models.ImageField(upload_to="apartment_images/")
     #thumbnail = models.ImageField(default=False, upload_to=get_upload_to)
@@ -67,15 +80,18 @@ class ApartmentImage(models.Model):
 
     def clean(self):
         """Ensure each apartment has exactly one image marked as a thumbnail."""
-        existing_thumbnails = ApartmentImage.objects.filter(apartment=self.apartment, is_thumbnail=True).exclude(id=self.id)
+        if not self.apartment_id:  # apartment is not saved yet
+            return  # Skip validation until apartment exists in DB
 
-        # Case 1: If this is marked as thumbnail, check if another one exists
+        existing_thumbnails = ApartmentImage.objects.filter(
+            apartment=self.apartment, is_thumbnail=True
+        ).exclude(id=self.id)
+
         if self.is_thumbnail and existing_thumbnails.exists():
             raise ValidationError("Det kan bara finnas 1 miniatyrbild per lägenhet.")
 
-        # Case 2: If this is NOT marked as thumbnail, check if there are no thumbnails left
-        if not self.is_thumbnail and not existing_thumbnails.exists():
-            raise ValidationError("Varje lägenhet måste ha exakt en 1 miniatyrbild.")
+        #if not self.is_thumbnail and not existing_thumbnails.exists():
+            #raise ValidationError("Varje lägenhet måste ha exakt en 1 miniatyrbild.")
 
     def save(self, *args, **kwargs):
         self.clean()  # Run validation before saving

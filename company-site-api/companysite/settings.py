@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'api',
+    'nested_admin',
 ]
 
 MIDDLEWARE = [
@@ -144,6 +145,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+BASE_DIR_STATIC = Path(__file__).resolve().parent.parent
+
+STATICFILES_DIRS = [
+    BASE_DIR_STATIC / "static",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
