@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import useFetch from "../../services/useFetch";
 import API from "../../services/api-service";
-import FormModal from "../FormModal";
+import FormModal from "../common/FormModal";
 
 import { MdOutlinePermMedia } from "react-icons/md";
 import { IoIosSend } from "react-icons/io";

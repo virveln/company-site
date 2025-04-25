@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import URL_ENDPOINTS from "../utils/urlEndpoints";
 import TABTITLES from "../utils/tabTitles";
 import contactDetails from "../utils/contactDetails";
-import PageHeader from "../components/PageHeader";
+import PageHeader from "../components/layout/PageHeader";
 
-import bgImg from '../images/contact.jpg';
+import bgImg from '../assets/images/contact.jpg';
 import { CgDanger } from "react-icons/cg";
 import { FiTool } from "react-icons/fi";
 import { IoMailOutline } from "react-icons/io5";

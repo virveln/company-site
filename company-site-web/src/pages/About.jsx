@@ -1,9 +1,9 @@
 import TABTITLES from "../utils/tabTitles";
-import PageHeader from "../components/PageHeader";
-import InformativeSection from "../components/InformativeSection";
+import PageHeader from "../components/layout/PageHeader";
+import InformativeSection from "../components/layout/InformativeSection";
 
-import exImage from '../images/apartments.jpg';
-import exImage1 from '../images/apartment.jpg';
+import exImage from '../assets/images/apartments.jpg';
+import exImage1 from '../assets/images/apartment.jpg';
 
 import { MdEco, MdOutlineSecurity } from "react-icons/md";
 import { HiBadgeCheck } from "react-icons/hi";

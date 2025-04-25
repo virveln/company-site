@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom';
 
 import useFetch from '../services/useFetch';
 import URL_ENDPOINTS from '../utils/urlEndpoints';
-import InfoTenantCard from '../components/InfoTenantCard';
-import InformativeSection from '../components/InformativeSection';
+import InfoTenantCard from '../components/common/InfoTenantCard';
+import InformativeSection from '../components/layout/InformativeSection';
 
-import apartmentImage from '../images/apartments.jpg';
-import locationImg from '../images/locations.png';
-import faultFixImg from '../images/tool.jpg';
+import apartmentImage from '../assets/images/apartments.jpg';
+import locationImg from '../assets/images/locations.png';
+import faultFixImg from '../assets/images/tool.jpg';
 
 import { MdEmail } from "react-icons/md";
 import { IoMdPerson } from "react-icons/io";
 import { FaHouseChimney, FaHouseChimneyUser, FaArrowRightLong } from "react-icons/fa6";
-import { UnderlineFromCenterEffect, UnderlineLeftToRightEffect } from '../components/Effects';
+import { UnderlineFromCenterEffect, UnderlineLeftToRightEffect } from '../components/common/Effects';
 
 export default function Home() {
     const { data: apartmentsData } = useFetch('/api/apartments/');

@@ -1,8 +1,8 @@
 import TABTITLES from "../utils/tabTitles";
 import useFetch from "../services/useFetch";
-import PageHeader from "../components/PageHeader";
+import PageHeader from "../components/layout/PageHeader";
 import VacantApartments from "../components/apartments/ApartmentCard";
-import Loading from "../components/Loading";
+import Loading from "../components/common/Loading";
 import NotFound from "./NotFound";
 
 const Apartments = () => {

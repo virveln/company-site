@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
-import URL_ENDPOINTS from '../utils/urlEndpoints';
+import URL_ENDPOINTS from '../../utils/urlEndpoints';
 
 const PageHeader = ({ bgImage, heading, subHeading }) => {
     // Use the location to get the current path

@@ -8,8 +8,8 @@ import ForTenant from "../pages/ForTenant";
 import Contact from "../pages/Contact";
 import About from "../pages/About";
 import NotFound from "../pages/NotFound";
-import Navbar from "../components/navbar/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../components/layout/navbar/Navbar";
+import Footer from "../components/layout/Footer";
 
 import FaultReporttSection from "../components/forTenant/FaultReportSection";
 import InfoSection from "../components/forTenant/InfoSection";

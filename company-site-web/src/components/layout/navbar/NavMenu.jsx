@@ -1,9 +1,9 @@
-import '../../styles/navbar.css';
+import '../../../styles/navbar.css';
 import { NavLink } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import URL_ENDPOINTS from '../../utils/urlEndpoints';
-import { UnderlineFromCenterEffect } from '../Effects';
+import URL_ENDPOINTS from '../../../utils/urlEndpoints';
+import { UnderlineFromCenterEffect } from '../../common/Effects';
 // import logo from '/vite.svg';
 
 const navitems = [

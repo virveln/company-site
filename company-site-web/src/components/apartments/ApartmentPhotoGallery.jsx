@@ -8,7 +8,7 @@ import 'swiper/css/thumbs';
 import { useParams } from "react-router-dom";
 import API from "../../services/api-service";
 import LightboxGallery from "./LightboxGallery";
-import placeholderImg from '../../images//house-placeholder.jpg';
+import placeholderImg from '../../assets/images//house-placeholder.jpg';
 import NotFound from '../../pages/NotFound';
 
 export default function ApartmentPhotoGallery() {

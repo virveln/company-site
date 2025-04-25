@@ -1,7 +1,7 @@
 import { Link, useLocation, } from "react-router-dom";
 
 import URL_ENDPOINTS from '../../utils/urlEndpoints';
-import { UnderlineFromCenterEffect } from "../Effects";
+import { UnderlineFromCenterEffect } from "../common/Effects";
 
 import { FaInfoCircle, FaTools } from "react-icons/fa";
 import { MdPolicy, MdHealthAndSafety } from "react-icons/md";

@@ -1,11 +1,11 @@
 import { Outlet, useLocation } from "react-router-dom"
 import URL_ENDPOINTS from "../utils/urlEndpoints";
 import TABTITLES from "../utils/tabTitles";
-import PageHeader from "../components/PageHeader"
+import PageHeader from "../components/layout/PageHeader"
 import TenantHeader from '../components/forTenant/TenantHeaders';
 import TenantSubmenu from "../components/forTenant/TenantSubmenu"
 
-import exImage from '../images/apartments.jpg';
+import exImage from '../assets/images/apartments.jpg';
 
 export default function ForTenant() {
     // Get last part of url

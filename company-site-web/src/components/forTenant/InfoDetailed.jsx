@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { formatTitleForUrl } from "../../utils/functions";
 import API from "../../services/api-service";
 import URL_ENDPOINTS from "../../utils/urlEndpoints";
-import Breadcrumbs from "../Breadcrumbs";
+import Breadcrumbs from "../common/Breadcrumbs";
 import { formatDate } from "../../utils/functions";
 import TABTITLES from "../../utils/tabTitles";
 import NotFound from "../../pages/NotFound";

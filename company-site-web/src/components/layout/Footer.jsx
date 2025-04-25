@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import contactDetails from "../utils/contactDetails";
-import URL_ENDPOINTS from '../utils/urlEndpoints';
-import { UnderlineFromCenterEffect } from '../components/Effects';
+import contactDetails from "../../utils/contactDetails";
+import URL_ENDPOINTS from '../../utils/urlEndpoints';
+import { UnderlineFromCenterEffect } from '../common/Effects';
 
 import { FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 import { FaClock } from "react-icons/fa6";

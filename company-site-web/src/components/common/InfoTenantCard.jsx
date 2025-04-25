@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import useFetch from "../services/useFetch";
-import { formatDate, formatTitleForUrl } from "../utils/functions";
+import useFetch from "../../services/useFetch";
+import { formatDate, formatTitleForUrl } from "../../utils/functions";
 import { UnderlineLeftToRightEffect } from './Effects';
 
 import { FaArrowRightLong } from "react-icons/fa6";

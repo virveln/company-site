@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { UnderlineLeftToRightEffect } from './Effects';
+import { UnderlineLeftToRightEffect } from '../common/Effects';
 import { FaArrowRightLong } from "react-icons/fa6";
 // import exImage from '../images/apartment.jpg';
 

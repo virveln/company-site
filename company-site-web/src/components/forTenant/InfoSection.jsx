@@ -1,5 +1,5 @@
 import TABTITLES from "../../utils/tabTitles";
-import InfoTenantCard from "../InfoTenantCard";
+import InfoTenantCard from "../common/InfoTenantCard";
 
 export default function InformationSection() {
     return (

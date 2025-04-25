@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import useFetch from '../../services/useFetch';
 import NotFound from '../../pages/NotFound';
 
-import placeholderImg from '../../images/house-placeholder.jpg';
+import placeholderImg from '../../assets/images/house-placeholder.jpg';
 
 import { FaArrowRightLong } from "react-icons/fa6";
-import { UnderlineLeftToRightEffect } from '../Effects';
+import { UnderlineLeftToRightEffect } from '../common/Effects';
 
 export default function ApartmentCard() {
     const { data, loading, error } = useFetch('/api/apartments/');
@@ -24,6 +24,7 @@ export default function ApartmentCard() {
     }, [data]);
 
     if (error) return <NotFound />;
+    console.log(apartments);
 
     return (
         <>
@@ -34,7 +35,7 @@ export default function ApartmentCard() {
                         return (
                             <Link to={`/lagenhet/${apartment.id}`} key={apartment.title} className="group flex flex-col justify-between bg-white border border-gray-100 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
                                 <div>
-                                    <img className="rounded-t-lg aspect-3/2 object-cover" src={thumbnailImage ? thumbnailImage : placeholderImg} alt="" />
+                                    <img className="rounded-t-lg aspect-3/2 object-cover" src={thumbnailImage ? thumbnailImage : apartment.images && apartment.images.length > 0 ? apartment.images[0].image : placeholderImg} alt="" />
                                     <div className="px-5 pt-5">
                                         <h3 className="text-xl font-medium tracking-tight text-gray-900 ">{apartment.title}</h3>
                                         <p className="mb-3 font-normal ">{apartment.city}</p>
@@ -64,7 +65,7 @@ export default function ApartmentCard() {
                                         <div className='flex justify-between items-end'>
                                             <div className=''>
                                                 <h4 className='text-xs text-gray-500 uppercase'>Tillträde</h4>
-                                                <p>{apartment.access}</p>
+                                                <p>{apartment.access_date ? apartment.access_date : apartment.access_note_display}</p>
                                             </div>
                                             <p className='group relative flex items-center text-[var(--secondary-color)] font-semibold hover:text-[var(--secondary-color-hover)] transition-colors duration-300'>
                                                 Läs mer

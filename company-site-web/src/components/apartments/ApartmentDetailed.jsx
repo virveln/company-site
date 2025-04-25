@@ -6,9 +6,9 @@ import URL_ENDPOINTS from "../../utils/urlEndpoints";
 import TABTITLES from "../../utils/tabTitles";
 import ApartmentPhotoGallery from './ApartmentPhotoGallery';
 import InterestForm from "./InterestForm";
-import Breadcrumbs from "../Breadcrumbs";
+import Breadcrumbs from "../common/Breadcrumbs";
 import NotFound from '../../pages/NotFound';
-import Loading from "../Loading";
+import Loading from "../common/Loading";
 
 import { FaCheck } from "react-icons/fa";
 import { LuRuler } from "react-icons/lu";

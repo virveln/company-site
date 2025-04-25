@@ -1,10 +1,10 @@
 import URL_ENDPOINTS from '../../utils/urlEndpoints';
-import exImage from '../../images/apartments.jpg';
-import toolImg from '../../images/tool.jpg';
-import movingImg from '../../images/moving.jpg';
-import paymentImg from '../../images/payment.jpg';
-import keysImg from '../../images/keys.jpg';
-import cleaningImg from '../../images/cleaning.jpg';
+import exImage from '../../assets/images/apartments.jpg';
+import toolImg from '../../assets/images/tool.jpg';
+import movingImg from '../../assets/images/moving.jpg';
+import paymentImg from '../../assets/images/payment.jpg';
+import keysImg from '../../assets/images/keys.jpg';
+import cleaningImg from '../../assets/images/cleaning.jpg';
 
 const TenantSectionHeaders = [
     { 
